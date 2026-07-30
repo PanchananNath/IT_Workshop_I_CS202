@@ -2,7 +2,7 @@
 
 > Official repository for the **CS202: IT Workshop I (Java Programming)** laboratory course materials.
 
-This repository contains the **day-wise laboratory materials, source code, examples, assignments, and other resources** for the CS202 Java Programming lab sessions. All lecture notes and lab exercises will be uploaded here throughout the semester.
+This repository contains the **day-wise laboratory materials, source code, examples, assignments, and other resources** for the CS202 Java Programming lab sessions. All lab exercises will be uploaded here throughout the semester.
 
 ---
 

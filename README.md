@@ -50,32 +50,6 @@ This repository contains the **day-wise laboratory materials, source code, examp
 └── README.md
 ```
 
-Each directory contains the materials for the corresponding laboratory session, including:
-
-- Java source code
-- Lab exercises
-- Practice problems
-- Demonstrations
-- Supporting resources
-
----
-
-# Getting Started
-
-1. Clone the repository
-
-```bash
-git clone <repository-url>
-```
-
-2. Navigate to the repository
-
-```bash
-cd <repository-name>
-```
-
-3. Open the day's folder and follow the lab instructions.
-
 ---
 
 # Prerequisites
@@ -91,31 +65,6 @@ Before attending the lab, ensure that you have:
 
 ---
 
-# Lab Updates
-
-New materials will be uploaded **day-wise** after each laboratory session.
-
-Students are encouraged to:
-
-- Pull the latest changes regularly
-- Complete all practice exercises
-- Review the example programs before the next lab
-
----
-
-# Contributors
-
-### Tutor Team
-
-- Dr. Arijit Nath
-- Dr. Krishnandu Hazra
-
-### Teaching Assistants
-
-- Kangkan Ray
-- Panchanan Nath
-- Partha Pratim Sarmah
-- Sushmita Panda
 
 ### Code Contributions
 

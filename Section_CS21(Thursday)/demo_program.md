@@ -1,21 +1,27 @@
-# Installation Guide
+# Creating Your First Program
 
-## Requirements
+Create a project named:
 
--   Supported operating system
--   Internet connection
--   Administrator or sudo access
+    Java_Programming
 
-## Steps
+Create a file:
 
-1.  Download the application.
-2.  Extract the archive if needed.
-3.  Run the installer.
-4.  Follow the on-screen prompts.
-5.  Launch the application and verify it starts correctly.
+    HelloWorld.java
 
-## Troubleshooting
+Paste:
 
--   Restart your computer if installation fails.
--   Ensure you have sufficient permissions.
--   Check available disk space.
+``` java
+public class HelloWorld {
+    public static void main(String[] args){
+        System.out.println("Hello, World!");
+    }
+}
+```
+
+Click **Run**.
+
+Expected output:
+
+    Hello, World!
+
+------------------------------------------------------------------------

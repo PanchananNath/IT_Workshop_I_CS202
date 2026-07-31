@@ -37,18 +37,6 @@ This repository contains the **day-wise laboratory materials, source code, examp
 | **Tutor** | Dr. Krishnandu Hazra |
 | **Teaching Assistants** | • Panchanan Nath <br> • Partha Pratim Sarmah <br> • Sushmita Panda |
 
----
-
-# Repository Structure
-
-```
-.
-├── Day-01/
-├── Day-02/
-├── Day-03/
-├── ...
-└── README.md
-```
 
 ---
 
@@ -68,7 +56,7 @@ Before attending the lab, ensure that you have:
 
 ### Code Contributions
 
-- **Er. Panchanan Nath, Teaching Assistant(panchanan.nath@iiitg.ac.in)**
+- **Er. Panchanan Nath, Teaching Assistant (panchanan.nath@iiitg.ac.in)**
 
 ---
 

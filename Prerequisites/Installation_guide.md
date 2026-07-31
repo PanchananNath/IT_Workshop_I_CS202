@@ -131,7 +131,7 @@ javac -version
 
 ------------------------------------------------------------------------
 
-# Part 3 -- Installing Visual Studio Code
+# Installing Visual Studio Code
 
 ## Download
 
@@ -171,7 +171,7 @@ Create a new Java project using the Command Palette.
 
 ------------------------------------------------------------------------
 
-# Part 4 -- Installing Apache NetBeans
+# Installing Apache NetBeans
 
 Download the installer from the official Apache NetBeans website.
 
@@ -203,7 +203,7 @@ Select the JDK folder.
 
 ------------------------------------------------------------------------
 
-# Part 5 -- Installing Eclipse IDE
+# Installing Eclipse IDE
 
 Download **Eclipse Installer** from the official Eclipse website.
 
@@ -220,33 +220,7 @@ installation folder listed above.
 
 ------------------------------------------------------------------------
 
-# Part 6 -- Creating Your First Program
 
-Create a project named:
-
-    HelloWorld
-
-Create a class:
-
-    HelloWorld.java
-
-Paste:
-
-``` java
-public class HelloWorld {
-    public static void main(String[] args){
-        System.out.println("Hello, World!");
-    }
-}
-```
-
-Click **Run**.
-
-Expected output:
-
-    Hello, World!
-
-------------------------------------------------------------------------
 
 # Common Beginner Mistakes
 

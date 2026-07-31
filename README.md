@@ -68,7 +68,7 @@ Before attending the lab, ensure that you have:
 
 ### Code Contributions
 
-- **Er. Panchanan Nath (Teaching Assistant)**
+- **Er. Panchanan Nath, Teaching Assistant(panchanan.nath@iiitg.ac.in)**
 
 ---
 

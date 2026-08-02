@@ -60,14 +60,12 @@ Before attending the lab, ensure that you have:
 
 ---
 
-# 📖 License
+# Note
 
 This repository is intended for **academic use** by students enrolled in **CS202 – IT Workshop I (Java Programming)**.
-
-Unauthorized redistribution or commercial use of the course materials is discouraged unless permitted by the course instructors.
 
 ---
 
 
 
-Happy Coding! ☕💻
+Happy Coding! 

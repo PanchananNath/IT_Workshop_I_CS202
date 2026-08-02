@@ -15,7 +15,7 @@ This repository contains the **day-wise laboratory materials, source code, examp
 
 ---
 
-# Course Coordinators
+# Section and respective Instructor and teaching assistants 
 
 ## CS21
 

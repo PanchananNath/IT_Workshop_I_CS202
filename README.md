@@ -19,7 +19,7 @@ This repository contains the **day-wise laboratory materials, source code, examp
 
 ## CS21
 
-| Category | Details |
+| About | Details |
 |----------|---------|
 | **Schedule** | Thursday • 2:00 PM – 5:00 PM |
 | **Venue** | Lab 5 |
@@ -30,7 +30,7 @@ This repository contains the **day-wise laboratory materials, source code, examp
 
 ## CS22
 
-| Category | Details |
+| About | Details |
 |----------|---------|
 | **Schedule** | Wednesday • 2:00 PM – 5:00 PM |
 | **Venue** | Lab 5 |

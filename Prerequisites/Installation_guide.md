@@ -90,7 +90,7 @@ Restart Command Prompt.
 
 ------------------------------------------------------------------------
 
-## Linux
+## For Linux users
 
 Install OpenJDK using your package manager.
 
@@ -114,7 +114,7 @@ Typical location:
 
 ------------------------------------------------------------------------
 
-## macOS
+## For macOS users
 
 Download a JDK installer or install using Homebrew.
 

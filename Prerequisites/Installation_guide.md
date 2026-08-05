@@ -80,7 +80,7 @@ Create:
 
 Value:
 
-    C:\Program Files\Java\jdk-17
+    C:\Program Files\Java\jdk-25
 
 Edit **Path** and add:
 
@@ -189,7 +189,7 @@ Browse to:
 
 Windows:
 
-    C:\Program Files\Java\jdk-17
+    C:\Program Files\Java\jdk-25
 
 Linux:
 

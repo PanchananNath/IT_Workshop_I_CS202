@@ -230,7 +230,7 @@ installation folder listed above.
 Project/
 │
 ├── Main.java
-└── Helper.java
+
 ```
 
 Example `Main.java`

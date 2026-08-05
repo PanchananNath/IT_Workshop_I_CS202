@@ -221,6 +221,457 @@ installation folder listed above.
 ------------------------------------------------------------------------
 
 
+# Java Compilation and Execution Guide
+
+
+# Example Project
+
+```
+Project/
+│
+├── Main.java
+└── Helper.java
+```
+
+Example `Main.java`
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+```
+
+---
+
+# Method 1: Command Line (Windows, Linux, macOS)
+
+## Step 1: Open Terminal
+
+### Windows
+
+- Command Prompt (cmd)
+- PowerShell
+- Windows Terminal
+
+### Linux
+
+- Terminal
+
+### macOS
+
+- Terminal
+
+---
+
+## Step 2: Navigate to Project Folder
+
+```bash
+cd path/to/project
+```
+
+Example
+
+Windows
+
+```bash
+cd C:\Users\John\Desktop\Project
+```
+
+Linux/macOS
+
+```bash
+cd ~/Desktop/Project
+```
+
+---
+
+## Step 3: Compile
+
+Compile one file:
+
+```bash
+javac Main.java
+```
+
+Compile multiple files:
+
+```bash
+javac *.java
+```
+
+If using packages:
+
+```bash
+javac -d out src/*.java
+```
+
+---
+
+## Step 4: Run
+
+Without packages:
+
+```bash
+java Main
+```
+
+With packages:
+
+```bash
+java -cp out package_name.Main
+```
+
+---
+
+# Method 2: Visual Studio Code
+
+## Step 1
+
+Install:
+
+- Visual Studio Code
+- Extension Pack for Java
+
+The extension pack includes:
+
+- Language Support for Java
+- Debugger for Java
+- Maven Support
+- Test Runner
+
+---
+
+## Step 2
+
+Open the project folder:
+
+```
+File
+    Open Folder
+```
+
+---
+
+## Step 3
+
+Open `Main.java`.
+
+VS Code automatically detects the Java project.
+
+---
+
+## Step 4
+
+Click either:
+
+- Run
+- Run Java
+
+or press
+
+```
+Ctrl + F5
+```
+
+To debug:
+
+```
+F5
+```
+
+---
+
+## Compile from VS Code Terminal
+
+Open:
+
+```
+Terminal
+New Terminal
+```
+
+Compile:
+
+```bash
+javac Main.java
+```
+
+Run:
+
+```bash
+java Main
+```
+
+---
+
+# Method 3: Eclipse IDE
+
+## Step 1
+
+Open Eclipse.
+
+---
+
+## Step 2
+
+Create a project.
+
+```
+File
+    New
+        Java Project
+```
+
+---
+
+## Step 3
+
+Enter a project name.
+
+Click
+
+```
+Finish
+```
+
+---
+
+## Step 4
+
+Create a class.
+
+```
+Right Click src
+    New
+        Class
+```
+
+Check
+
+```
+public static void main(String[] args)
+```
+
+Click
+
+```
+Finish
+```
+
+---
+
+## Step 5
+
+Write your Java code.
+
+---
+
+## Step 6
+
+Run the program.
+
+Click
+
+```
+Run
+```
+
+or
+
+```
+Right Click Main.java
+    Run As
+        Java Application
+```
+
+Shortcut:
+
+```
+Ctrl + F11
+```
+
+---
+
+# Compiling Multiple Files
+
+Suppose you have:
+
+```
+Main.java
+Student.java
+Teacher.java
+```
+
+Compile:
+
+```bash
+javac *.java
+```
+
+Run:
+
+```bash
+java Main
+```
+
+---
+
+# Compiling Package-Based Projects
+
+Project structure:
+
+```
+src/
+└── com/
+    └── example/
+        ├── Main.java
+        └── Student.java
+```
+
+Compile:
+
+```bash
+javac -d out src/com/example/*.java
+```
+
+Run:
+
+```bash
+java -cp out com.example.Main
+```
+
+---
+
+# Common Errors
+
+## Error: javac is not recognized
+
+**Cause**
+
+JDK is not installed or PATH is not configured.
+
+**Solution**
+
+- Install the JDK.
+- Add the JDK `bin` directory to the system PATH.
+- Restart the terminal.
+
+---
+
+## Error: Could not find or load main class
+
+**Cause**
+
+- Wrong class name
+- Wrong package
+- Incorrect classpath
+
+**Solution**
+
+- Ensure the class name matches the filename.
+- Verify package declarations.
+- Use the correct classpath with `-cp`.
+
+Example:
+
+```bash
+java -cp out com.example.Main
+```
+
+---
+
+## Error: ClassNotFoundException
+
+**Cause**
+
+The JVM cannot locate the compiled class.
+
+**Solution**
+
+Compile first:
+
+```bash
+javac Main.java
+```
+
+Then run:
+
+```bash
+java Main
+```
+
+---
+
+# Useful Commands
+
+Compile:
+
+```bash
+javac Main.java
+```
+
+Compile all Java files:
+
+```bash
+javac *.java
+```
+
+Run:
+
+```bash
+java Main
+```
+
+Compile to an output directory:
+
+```bash
+javac -d out src/*.java
+```
+
+Run with classpath:
+
+```bash
+java -cp out Main
+```
+
+Run packaged application:
+
+```bash
+java -cp out com.example.Main
+```
+
+---
+
+# Keyboard Shortcuts
+
+## VS Code
+
+| Action | Shortcut |
+|---------|----------|
+| Run | Ctrl + F5 |
+| Debug | F5 |
+| Terminal | Ctrl + ` |
+
+---
+
+## Eclipse
+
+| Action | Shortcut |
+|---------|----------|
+| Run | Ctrl + F11 |
+| Debug | F11 |
+| Save | Ctrl + S |
+
+---
+
+
+
+
+
+
+
 
 # Common Beginner Mistakes
 

@@ -32,7 +32,7 @@ NetBeans - Eclipse IDE
 
 Visit the official Oracle JDK page or Eclipse Temurin website.
 
-Click the latest **JDK 17 or newer** for **Windows x64 Installer
+Click the latest **JDK 25 or newer** for **Windows x64 Installer
 (.exe)**.
 
 Your browser normally saves it to:
@@ -50,7 +50,7 @@ Your browser normally saves it to:
 ```{=html}
 <!-- -->
 ```
-    C:\Program Files\Java\jdk-17
+    C:\Program Files\Java\jdk-25
 
 Do not change it unless instructed.
 

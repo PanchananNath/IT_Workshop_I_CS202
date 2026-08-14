@@ -1,8 +1,8 @@
-# Assignment 2 — Java Solutions (IT Workshop-I, CS 202)
+# Assignment 2 — Sample Solutions 
 
 All 4 problems are classic **Greedy** and **Dynamic Programming** problems. Each solution below has:
-1. The full working Java code (A to Z, ready to compile and run)
-2. A simple, plain-language explanation of *why* it works
+1. The full Java code 
+2. A simple, plain-language explanation
 
 ---
 
@@ -138,7 +138,7 @@ A1 A4 A6
 Maximum Activities = 3
 ```
 
-### Explanation (Simple Language)
+### Explanation 
 
 - **Greedy idea:** Always pick the activity that **finishes earliest** among what's left — this leaves the most room in the day for future activities.
 - **Step 1:** Sort all activities by their end time (smallest first).
@@ -319,7 +319,7 @@ public class MinimumCoverActivities {
 }
 ```
 
-**Output (for the given data):**
+**Output:**
 ```
 Selected Activities:
 A1
@@ -329,11 +329,11 @@ A5
 Minimum Activities = 4
 ```
 
-### Explanation (Simple Language)
+### Explanation 
 
 - **Greedy idea:** Think of `covered` as "the furthest point we've successfully covered so far, with no gaps." We repeatedly ask: **"Of all the activities that start at or before `covered`, which one stretches the furthest to the right?"** That one always gives the best possible progress, so we pick it.
 - We keep doing this — extending our covered region step by step — until we reach the end of the required range, or until no activity can extend it further (meaning full coverage is impossible).
 - **Time Complexity:** O(N log N) — dominated by sorting; the scanning afterward is O(N) because each activity is only looked at once.
 
-**A quick honest note on this example:** the assignment's sample output lists `A2 A4 A5` (3 activities), but with this data, point `1` (the very start of the required range `1–10`) can *only* be covered by `A1` (the only activity whose interval includes time `1`). Running the correct covering algorithm on the exact numbers given produces `A1, A3, A4, A5` (4 activities) — `A2` and `A3` overlap in coverage, so only the one that stretches furthest (`A3`, ending at 7) is kept over `A2`. This looks like a small typo in the original assignment text rather than an error in the algorithm itself — the code above implements the textbook-correct greedy interval-covering approach, so it will always work correctly for other input values.
+
 

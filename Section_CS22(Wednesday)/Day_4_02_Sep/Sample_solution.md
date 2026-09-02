@@ -140,11 +140,8 @@ MAIN PROGRAM
 
 # Java Source Code
 
-Both programs were compiled with `javac` (OpenJDK 21) and exercised with sample console input covering: adding librarians up to and past the limit, adding books with librarian assignment, displaying book/librarian details, updating a book and a librarian, and deleting a book and a librarian — all without errors.
 
-Each part is a **separate, self-contained, compilable program**. Keep them in separate folders (e.g. `PartA/` and `PartB/`) since both files define classes named `Librarian` and `Book` — compiling them into the *same* folder would make the second compilation silently overwrite the first's `.class` files.
-
-## 3.1 Part A — `LibraryPartA.java`
+## Part A — `LibraryPartA.java`
 
 *(Menu: Add Librarian · Add Book · Display Book details · Display Librarian details of a book)*
 

@@ -1,5 +1,3 @@
-## Assignment 6 
-
 ## Pseudocode
 
 ```text

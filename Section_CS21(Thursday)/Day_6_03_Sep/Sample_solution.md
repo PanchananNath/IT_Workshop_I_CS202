@@ -1,25 +1,4 @@
-# CS 202 – IT Workshop I
-## Assignment 6 – Simple Logic, Pseudocode and Java Code
-
-### Problem
-Create a menu-driven Java program using `Person`, `Student`, and `Faculty` classes.
-
-- `Student` and `Faculty` have an **IS-A** relationship with `Person`.
-- A `Student` has a `Faculty` advisor (**HAS-A** relationship).
-- Maximum students = 5.
-- Maximum faculty = 2.
-- `Student` and `Faculty` override `getDetails()`.
-- `Faculty.toString()` returns faculty name and employee ID.
-- Menu:
-  1. Add student
-  2. Delete student
-  3. Add faculty
-  4. Delete faculty
-  5. Add person
-  6. Delete person
-  7. Get student details
-  8. Get advisor details
-  9. Get person details
+## Assignment 6 
 
 ## Simple Logic
 

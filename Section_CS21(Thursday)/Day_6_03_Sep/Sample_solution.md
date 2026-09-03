@@ -1,18 +1,5 @@
 ## Assignment 6 
 
-## Simple Logic
-
-1. Create arrays/lists for students and faculty.
-2. Create the `Person` base class with `name`, `age`, constructor, and `getDetails()`.
-3. Create `Faculty` extending `Person`.
-4. Create `Student` extending `Person`.
-5. Give `Student` a `Faculty` reference called `facultyAdvisor`.
-6. In the driver class, repeatedly display the menu.
-7. Perform the selected operation.
-8. Check the maximum limits before adding students/faculty.
-9. Show an error message for invalid operations.
-10. Stop when the user chooses to exit.
-
 ## Pseudocode
 
 ```text

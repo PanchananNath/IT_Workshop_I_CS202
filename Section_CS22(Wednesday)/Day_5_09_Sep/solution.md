@@ -1,355 +1,175 @@
-# Solutions for IT Workshop I (CS202) - Assignment 5
+# Assignment 5: Theoretical Concepts & Solutions
 
 ## Problem 1: Smart Transportation System
 
-### Java Implementation
+### Problem Explanation
 
-```java
-import java.util.ArrayList;
+This problem models a fleet management system with different types of vehicles. Each vehicle calculates its running cost differently based on distance, type, and specific attributes (like battery or gear efficiency). The goal is to design a class hierarchy where a single list of base `Vehicle` references can manage and interact with all vehicle types seamlessly.
 
-// Base class Vehicle
-class Vehicle {
-    private String modelName;
-    private double baseRate;
-    private double distanceTravelled;
+### Theoretical Concepts
 
-    public Vehicle(String modelName, double baseRate, double distanceTravelled) {
-        this.modelName = modelName;
-        this.baseRate = baseRate;
-        this.distanceTravelled = Math.max(0, distanceTravelled); // Ensure non-negative distance
-    }
+* **Inheritance:** `Car` and `Bike` inherit common properties (like `modelName`, `baseRate`, and `distanceTravelled`) from `Vehicle`. `ElectricCar` extends `Car`, creating a **multi-level inheritance hierarchy** (`Vehicle` $\rightarrow$ `Car` $\rightarrow$ `ElectricCar`).
+* **Constructor Chaining (`super`):** Subclasses use `super(...)` to call the parent class constructor to initialize inherited fields before adding their own subclass-specific attributes (e.g., `batteryCapacity`).
+* **Run-Time Polymorphism (Method Overriding):** Methods like `calculateRunningCost()` and `startEngine()` are declared in `Vehicle` and overridden in each subclass. When iterating over a `List<Vehicle>`, the Java Virtual Machine dynamically determines and executes the specific subclass's method at runtime based on the actual object instance.
+* **Encapsulation & Boundary Checking:** Class fields are kept private and exposed via getters and setters. Input boundaries (such as preventing negative distances) are validated in constructors and setters.
 
-    // Getters and Setters
-    public String getModelName() { return modelName; }
-    public double getBaseRate() { return baseRate; }
-    public double getDistanceTravelled() { return distanceTravelled; }
+### Pseudocode
 
-    public void setDistanceTravelled(double distanceTravelled) {
-        this.distanceTravelled = Math.max(0, distanceTravelled);
-    }
+```text
+CLASS Vehicle
+    PRIVATE modelName, baseRate, distanceTravelled
 
-    // Method to calculate running cost (to be overridden)
-    public double calculateRunningCost() {
-        return baseRate * distanceTravelled;
-    }
+    CONSTRUCTOR Vehicle(modelName, baseRate, distanceTravelled)
+        SET this.modelName = modelName
+        SET this.baseRate = baseRate
+        SET this.distanceTravelled = MAX(0, distanceTravelled)
+    END CONSTRUCTOR
 
-    // Overridden display details method
-    public void displayDetails() {
-        System.out.println("-------------------------------------------");
-        System.out.println("Vehicle Type       : " + this.getClass().getSimpleName());
-        System.out.println("Model Name         : " + modelName);
-        System.out.println("Distance Travelled : " + distanceTravelled + " km");
-        System.out.println("Base Rate          : $" + baseRate + "/km");
-        System.out.printf("Total Running Cost : $%.2f%n", calculateRunningCost());
-    }
+    FUNCTION calculateRunningCost()
+        RETURN baseRate * distanceTravelled
+    END FUNCTION
 
-    public void startEngine() {
-        System.out.println(modelName + ": Engine started.");
-    }
-}
+    FUNCTION displayDetails()
+        PRINT modelName, distanceTravelled, baseRate, calculateRunningCost()
+    END FUNCTION
+END CLASS
 
-// Subclass: Car
-class Car extends Vehicle {
-    private int seatingCapacity;
+CLASS Car EXTENDS Vehicle
+    PRIVATE seatingCapacity
 
-    public Car(String modelName, double baseRate, double distanceTravelled, int seatingCapacity) {
-        super(modelName, baseRate, distanceTravelled);
-        this.seatingCapacity = seatingCapacity;
-    }
+    CONSTRUCTOR Car(modelName, baseRate, distanceTravelled, seatingCapacity)
+        CALL super(modelName, baseRate, distanceTravelled)
+        SET this.seatingCapacity = seatingCapacity
+    END CONSTRUCTOR
 
-    @Override
-    public double calculateRunningCost() {
-        // Cars have a flat maintenance surcharge per trip plus distance cost
-        double maintenanceFee = 15.00;
-        return super.calculateRunningCost() + maintenanceFee;
-    }
+    OVERRIDE FUNCTION calculateRunningCost()
+        RETURN super.calculateRunningCost() + FLAT_MAINTENANCE_SURCHARGE
+    END FUNCTION
+END CLASS
 
-    @Override
-    public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Seating Capacity   : " + seatingCapacity + " seats");
-    }
+CLASS ElectricCar EXTENDS Car
+    PRIVATE batteryCapacity, costPerKWh
 
-    @Override
-    public void startEngine() {
-        System.out.println(getModelName() + " (Car): Vroom! Fuel engine started.");
-    }
-}
+    CONSTRUCTOR ElectricCar(modelName, baseRate, distanceTravelled, seatingCapacity, batteryCapacity, costPerKWh)
+        CALL super(modelName, baseRate, distanceTravelled, seatingCapacity)
+        SET this.batteryCapacity = batteryCapacity
+        SET this.costPerKWh = costPerKWh
+    END CONSTRUCTOR
 
-// Subclass: ElectricCar inheriting from Car (Demonstrating Multi-level Inheritance)
-class ElectricCar extends Car {
-    private double batteryCapacity; // in kWh
-    private double costPerKWh;
+    OVERRIDE FUNCTION calculateRunningCost()
+        energyConsumed = distanceTravelled * KWH_PER_KM_RATE
+        RETURN energyConsumed * costPerKWh
+    END FUNCTION
+END CLASS
 
-    public ElectricCar(String modelName, double baseRate, double distanceTravelled, int seatingCapacity, double batteryCapacity, double costPerKWh) {
-        // Constructor chaining using super()
-        super(modelName, baseRate, distanceTravelled, seatingCapacity);
-        this.batteryCapacity = batteryCapacity;
-        this.costPerKWh = costPerKWh;
-    }
+CLASS Bike EXTENDS Vehicle
+    PRIVATE hasGear
 
-    @Override
-    public double calculateRunningCost() {
-        // Electric car running cost based on electricity consumption (approx 0.15 kWh/km)
-        double energyConsumed = getDistanceTravelled() * 0.15;
-        return energyConsumed * costPerKWh;
-    }
+    OVERRIDE FUNCTION calculateRunningCost()
+        RETURN baseRate * DISCOUNT_FACTOR * distanceTravelled
+    END FUNCTION
+END CLASS
 
-    @Override
-    public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Battery Capacity   : " + batteryCapacity + " kWh");
-        System.out.println("Charging Rate      : $" + costPerKWh + "/kWh");
-    }
+// Demonstration Procedure
+PROCEDURE Main()
+    CREATE list of Vehicle references
+    ADD Car, ElectricCar, and Bike instances to the list
+    
+    FOR EACH vehicle IN list
+        CALL vehicle.startEngine()       // Executed polymorphically
+        CALL vehicle.displayDetails()    // Executed polymorphically
+    END FOR
+END PROCEDURE
 
-    @Override
-    public void startEngine() {
-        System.out.println(getModelName() + " (Electric Car): Silent boot! Electric system ready.");
-    }
-}
+```
 
-// Subclass: Bike
-class Bike extends Vehicle {
-    private boolean hasGear;
-
-    public Bike(String modelName, double baseRate, double distanceTravelled, boolean hasGear) {
-        super(modelName, baseRate, distanceTravelled);
-        this.hasGear = hasGear;
-    }
-
-    @Override
-    public double calculateRunningCost() {
-        // Bikes have higher efficiency (20% discount on base rate)
-        return getBaseRate() * 0.8 * getDistanceTravelled();
-    }
-
-    @Override
-    public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Geared Bike        : " + (hasGear ? "Yes" : "No"));
-    }
-
-    @Override
-    public void startEngine() {
-        System.out.println(getModelName() + " (Bike): Kick/Button start! Bike engine revved.");
-    }
-}
-
-// Main Test Class
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("==================================================");
-        System.out.println("       SMART TRANSPORTATION SYSTEM DEMO           ");
-        System.out.println("==================================================");
-
-        // Test Case a: Normal Car
-        Car sedan = new Car("Honda City", 0.50, 120.0, 5);
-
-        // Test Case b: ElectricCar
-        ElectricCar tesla = new ElectricCar("Tesla Model 3", 0.00, 150.0, 5, 75.0, 0.18);
-
-        // Test Case c: Bike
-        Bike motorcycle = new Bike("Yamaha R15", 0.30, 80.0, true);
-
-        // Test Case d: Store using Vehicle polymorphic references
-        ArrayList<Vehicle> fleet = new ArrayList<>();
-        fleet.add(sedan);
-        fleet.add(tesla);
-        fleet.add(motorcycle);
-
-        System.out.println("\n--- Processing Fleet (Run-Time Polymorphism) ---");
-        for (Vehicle v : fleet) {
-            v.startEngine();        // Polymorphic method call
-            v.displayDetails();     // Dynamic method dispatch
-        }
-
-        // Test Case e: Verify rate changes with different speeds/distances
-        System.out.println("\n==================================================");
-        System.out.println("   Test Case e: Updating Distance & Re-evaluating   ");
-        System.out.println("==================================================");
-        tesla.setDistanceTravelled(300.0);
-        tesla.displayDetails();
-
-        // Test Case f: Boundary condition test (Zero distance travelled)
-        System.out.println("\n==================================================");
-        System.out.println("   Test Case f: Boundary Case (0 km distance)     ");
-        System.out.println("==================================================");
-        Car stationaryCar = new Car("Toyota Corolla", 0.45, 0.0, 5);
-        stationaryCar.displayDetails();
-    }
-}
-
-
-
-# Solutions for IT Workshop I (CS202) - Assignment 5
+---
 
 ## Problem 2: Employee Payroll System
 
-### Java Implementation
+### Problem Explanation
 
-```java
-import java.util.ArrayList;
+This problem requires designing an automated payroll calculation system for different employee roles (full-time, part-time, contract) and providing flexible bonus calculation strategies based on company policies.
 
-// Base class Employee
-class Employee {
-    private String name;
-    private int id;
-    private double baseSalary;
+### Theoretical Concepts
 
-    public Employee(String name, int id, double baseSalary) {
-        this.name = name;
-        this.id = id;
-        this.baseSalary = baseSalary;
-    }
+* **Compile-Time Polymorphism (Method Overloading):** Multiple methods in the same class share the same name (`calculateBonus`) but differ in parameter lists (number or type of parameters). The compiler decides which version to invoke based on arguments passed:
+1. `calculateBonus(fixedAmount)`
+2. `calculateBonus(percentage)`
+3. `calculateBonus(percentage, performanceRating)`
 
-    // Getters and Setters
-    public String getName() { return name; }
-    public int getId() { return id; }
-    public double getBaseSalary() { return baseSalary; }
 
-    public void setBaseSalary(double baseSalary) {
-        this.baseSalary = baseSalary;
-    }
+* **Run-Time Polymorphism (Method Overriding):** `calculateSalary()` is defined in `Employee` and overridden in `FullTimeEmployee` (adds allowances), `PartTimeEmployee` (hours $\times$ rate), and `ContractEmployee` (fixed contract fee).
+* **Abstract Data Access & Generalization:** Treating all specific employee types as generic `Employee` instances allows processing company-wide payroll through unified iteration.
 
-    // Method to calculate salary (to be overridden)
-    public double calculateSalary() {
-        return baseSalary;
-    }
+### Pseudocode
 
-    // Overloaded calculateBonus methods
-    // 1. Fixed bonus
-    public double calculateBonus(double fixedAmount) {
-        return fixedAmount;
-    }
+```text
+CLASS Employee
+    PRIVATE name, id, baseSalary
 
-    // 2. Percentage-based bonus
-    public double calculateBonus(int percentage) {
-        return (calculateSalary() * percentage) / 100.0;
-    }
+    CONSTRUCTOR Employee(name, id, baseSalary)
+        SET this.name = name, this.id = id, this.baseSalary = baseSalary
+    END CONSTRUCTOR
 
-    // 3. Percentage + Performance rating multiplier
-    public double calculateBonus(int percentage, double performanceRating) {
-        double baseBonus = calculateBonus(percentage);
-        return baseBonus * performanceRating; // Multiplier based on rating (e.g., 1.2 for high performance)
-    }
+    FUNCTION calculateSalary()
+        RETURN baseSalary
+    END FUNCTION
 
-    public void displayDetails() {
-        System.out.println("-------------------------------------------");
-        System.out.println("Employee Type : " + this.getClass().getSimpleName());
-        System.out.println("ID            : " + id);
-        System.out.println("Name          : " + name);
-        System.out.printf("Total Salary  : $%.2f%n", calculateSalary());
-    }
-}
+    // Overloaded Bonus Method 1: Fixed Bonus
+    FUNCTION calculateBonus(fixedAmount)
+        RETURN fixedAmount
+    END FUNCTION
 
-// Subclass: FullTimeEmployee
-class FullTimeEmployee extends Employee {
-    private double allowance;
+    // Overloaded Bonus Method 2: Percentage Bonus
+    FUNCTION calculateBonus(percentage)
+        RETURN (calculateSalary() * percentage) / 100
+    END FUNCTION
 
-    public FullTimeEmployee(String name, int id, double baseSalary, double allowance) {
-        super(name, id, baseSalary);
-        this.allowance = allowance;
-    }
+    // Overloaded Bonus Method 3: Percentage + Rating Bonus
+    FUNCTION calculateBonus(percentage, performanceRating)
+        RETURN calculateBonus(percentage) * performanceRating
+    END FUNCTION
+END CLASS
 
-    @Override
-    public double calculateSalary() {
-        return getBaseSalary() + allowance;
-    }
+CLASS FullTimeEmployee EXTENDS Employee
+    PRIVATE allowance
 
-    @Override
-    public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Allowance     : $" + allowance);
-    }
-}
+    OVERRIDE FUNCTION calculateSalary()
+        RETURN baseSalary + allowance
+    END FUNCTION
+END CLASS
 
-// Subclass: PartTimeEmployee
-class PartTimeEmployee extends Employee {
-    private int hoursWorked;
-    private double hourlyRate;
+CLASS PartTimeEmployee EXTENDS Employee
+    PRIVATE hoursWorked, hourlyRate
 
-    public PartTimeEmployee(String name, int id, int hoursWorked, double hourlyRate) {
-        super(name, id, 0); // Base salary is 0, calculated per hour
-        this.hoursWorked = hoursWorked;
-        this.hourlyRate = hourlyRate;
-    }
+    OVERRIDE FUNCTION calculateSalary()
+        RETURN hoursWorked * hourlyRate
+    END FUNCTION
+END CLASS
 
-    @Override
-    public double calculateSalary() {
-        return hoursWorked * hourlyRate;
-    }
+CLASS ContractEmployee EXTENDS Employee
+    PRIVATE contractAmount
 
-    @Override
-    public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Hours Worked  : " + hoursWorked + " hrs");
-        System.out.println("Hourly Rate   : $" + hourlyRate + "/hr");
-    }
-}
+    OVERRIDE FUNCTION calculateSalary()
+        RETURN contractAmount
+    END FUNCTION
+END CLASS
 
-// Subclass: ContractEmployee
-class ContractEmployee extends Employee {
-    private double contractAmount;
+// Demonstration Procedure
+PROCEDURE Main()
+    CREATE list of Employee references
+    ADD FullTimeEmployee, PartTimeEmployee, and ContractEmployee to list
 
-    public ContractEmployee(String name, int id, double contractAmount) {
-        super(name, id, 0);
-        this.contractAmount = contractAmount;
-    }
+    FOR EACH emp IN list
+        CALL emp.displayDetails() // Invokes dynamic calculateSalary()
+    END FOR
 
-    @Override
-    public double calculateSalary() {
-        return contractAmount;
-    }
+    // Demonstrate Compile-Time Overloading
+    emp1 = FullTimeEmployee(...)
+    bonus1 = emp1.calculateBonus(500.0)             // Fixed amount
+    bonus2 = emp1.calculateBonus(10)                // Percentage-based
+    bonus3 = emp1.calculateBonus(10, 1.25)          // Performance-adjusted
+END PROCEDURE
 
-    @Override
-    public void displayDetails() {
-        super.displayDetails();
-        System.out.println("Contract Amount: $" + contractAmount);
-    }
-}
-
-// Main Test Class
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("==================================================");
-        System.out.println("        EMPLOYEE PAYROLL SYSTEM DEMO              ");
-        System.out.println("==================================================");
-
-        // Test Case a: FullTimeEmployee
-        FullTimeEmployee emp1 = new FullTimeEmployee("Alice Smith", 101, 5000.0, 1200.0);
-
-        // Test Case b: PartTimeEmployee
-        PartTimeEmployee emp2 = new PartTimeEmployee("Bob Jones", 102, 80, 25.0);
-
-        // Test Case c: ContractEmployee
-        ContractEmployee emp3 = new ContractEmployee("Charlie Brown", 103, 4000.0);
-
-        // Test Case d: Store using Employee references & execute calculateSalary() polymorphically
-        ArrayList<Employee> employees = new ArrayList<>();
-        employees.add(emp1);
-        employees.add(emp2);
-        employees.add(emp3);
-
-        System.out.println("\n--- Processing Payroll (Polymorphism) ---");
-        for (Employee e : employees) {
-            e.displayDetails();
-        }
-
-        // Test Case e & f: Demonstrating Overloaded calculateBonus() methods
-        System.out.println("\n==================================================");
-        System.out.println("          DEMONSTRATING OVERLOADED BONUS          ");
-        System.out.println("==================================================");
-
-        // e. Fixed Bonus
-        double fixedBonus = emp1.calculateBonus(500.0);
-        System.out.printf("%s Fixed Bonus ($500 flat):$%.2f%n", emp1.getName(), fixedBonus);
-
-        // f. Percentage-based Bonus
-        double percentBonus = emp1.calculateBonus(10); // 10% of total salary
-        System.out.printf("%s Percentage Bonus (10%%): $%.2f%n", emp1.getName(), percentBonus);
-
-        // f. Performance-based Bonus
-        double performanceBonus = emp1.calculateBonus(10, 1.25); // 10% with 1.25 rating multiplier
-        System.out.printf("%s Performance Bonus (10%% * 1.25 rating): $%.2f%n", emp1.getName(), performanceBonus);
-    }
-}
+```

@@ -169,14 +169,6 @@ Width: 5
 Area of Rectangle: 50.0
 ```
 
-## Quick difference: Overloading vs Overriding
-
-| Feature | Method Overloading | Method Overriding |
-|---|---|---|
-| Main idea | Same method name, different parameters | Child class provides a new implementation |
-| Classes | Usually within the same class | Requires inheritance |
-| Example here | `add()`, `add(int,int)`, `add(int,int,int)` | `Rectangle.getArea()` overrides `Shape.getArea()` |
-| Selection | Based on method arguments | Based on the object/class relationship |
 
 
 

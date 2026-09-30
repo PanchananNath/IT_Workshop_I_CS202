@@ -24,7 +24,7 @@ This repository contains the **day-wise laboratory materials, source code, examp
 | **Schedule** | Thursday • 2:00 PM – 5:00 PM |
 | **Venue** | Lab 5 |
 | **Tutor** | Dr. Arijit Nath |
-| **Teaching Assistants** | • Kangkan Ray <br> • Panchanan Nath <br> • Partha Pratim Sarmah |
+| **Teaching Assistants** | • Kangkan Ray (Left the institute) <br> • Panchanan Nath <br> • Partha Pratim Sarmah |
 
 ---
 

@@ -187,21 +187,7 @@ java InformationSystem
 ```
 
 ```java
-/*
- * CS 202 Lab - Assignment 8
- * Information System with inheritance and custom exceptions.
- *
- *            Person  (firstName, lastName, pan, pin)
- *            /     \
- *     Student       Employee
- * (email, rollNo)   (email, empId)
- *
- * validate() is called automatically while an object is being created.
- * Any invalid field throws a field-specific custom exception.
- *
- * Compile : javac InformationSystem.java
- * Run     : java InformationSystem
- */
+
 
 import java.util.ArrayList;
 import java.util.List;
